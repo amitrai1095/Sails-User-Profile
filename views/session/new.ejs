@@ -1,0 +1,11 @@
+<form action="/session/create" method="POST">
+	
+	<input type="text" placeholder="email" name="email"><br>
+
+	<input type="password" placeholder="Password" name="password"><br>
+
+	<input type="submit" value="Sign In">
+	<br>
+	
+	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>

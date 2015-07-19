@@ -1,0 +1,12 @@
+<form action="/user/update/<%= user.id%>" method="POST">
+<input type="text" placeholder="your name" name="name" value="<%= user.name%>"><br>
+
+<input type="text" placeholder="your title" name="title" value="<%= user.title%>"><br>
+
+<input type="text" placeholder="email" name="email" value="<%= user.email%>"><br>
+
+<input type="submit" value="update account">
+<br>
+
+<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>
