@@ -1,14 +1,21 @@
-<table>
-<% _.each(users, function(user){ %>
-<tr data-id="<%= user.id %>" data-model="user">
-<td><%= user.id %></td>      
-<td><%= user.name %></td>
-<td><%= user.title %></td>
-<td><%= user.email %></td>
-<td><a href="/user/show/<%= user.id %>">Show</a></td>
-<td><a href="/user/edit/<%= user.id %>">Edit</a></td>
-<td><a href="/user/edit/<%= user.id %>">Delete</a></td>
-</tr>
+<table class="hoverable" style="color:white">
+	<% _.each(users, function(user){ %>
+		<tr data-id="<%= user.id %>" data-model="user">
+			<td><%= user.id %></td>      
+			<td><%= user.name %></td>
+			<td><%= user.title %></td>
+			<td><%= user.email %></td>
 
-<% }) %>
+			<% if(user.admin) { %>
+				<td>Admin</td>
+			<% } else { %>
+				<td>User</td>
+			<% } %>
+
+			<td><a href="/user/show/<%= user.id %>" class="btn" style="background-color:white;color:#514b4b">Show</a></td>
+			<td><a href="/user/edit/<%= user.id %>" class="btn" style="background-color:white;color:#514b4b">Edit</a></td>
+			<td><a href="/user/delete/<%= user.id %>" class="btn" style="background-color:white;color:#514b4b">Delete</a></td>
+		</tr>
+
+	<% }) %>
 </table>

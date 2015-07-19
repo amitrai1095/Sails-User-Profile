@@ -46,6 +46,17 @@ module.exports = {
 				console.log('User granted access');
 				req.session.authenticated = true;
 				req.session.User = user;
+
+				//Checking if user is admin
+
+				if(req.session.User.admin){
+					//Redirecting to Admin Page
+					res.redirect('/user');
+					return;
+				}
+
+				//Redirecting to normal user page
+
 				res.redirect('/user/show/'+user.id );
 			});
 		});

@@ -22,6 +22,11 @@ module.exports = {
   		required: true
   	},
 
+    admin: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+
     encryptedPassword:{
       type: 'string'
     },

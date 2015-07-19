@@ -54,6 +54,19 @@ module.exports = {
 		});
 	},
 
+	delete: function(req,res,next){
+		User.findOne(req.param('id'),function foundUser(err,user){
+			if(err) return next(err);
+			if(!user) return next();
+		});
+		User.destroy(req.param('id'), function userDeleted(err){
+			if(err){
+				return res.redirect('/user/');
+			}
+			res.redirect('/user');
+		});
+	},
+
 	index: function(req,res,next){
 
 		User.find(function foundUsers(err,users){
