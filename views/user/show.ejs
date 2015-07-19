@@ -1,5 +1,14 @@
-<h1><%- user.name %></h1>
-<h1><%- user.title %></h1>
-<h1><%- user.email %></h1>
+	<% if(session.authenticated){ %>
+		<h3><%- user.name %></h3>
+		<h3><%- user.title %></h3>
+		<h3><%- user.email %></h3>
 
-<a href="/user/edit/<%= user.id%>">EDIT</a>
+		<a href="/user/edit/<%= user.id%>">EDIT</a>
+	<% } %>
+
+<% if(!session.authenticated){ %>
+	<div class="container" style="width:500px;background-color:#fdfdfd;height:200px;box-shadow:1px 5px 10px 5px #3c3b3b;margin-top:100px;">
+		<h5>You Must be signed In to see this page</h5>
+		<a href="/session/new" class="btn" style="background-color:#1a69c1;margin-right:30px;color:white !important;margin-left:35%;margin-top:100px">Sign In</a>
+	</div>
+<% } %>

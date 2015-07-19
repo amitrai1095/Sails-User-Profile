@@ -25,6 +25,10 @@ module.exports = {
 			}
 
 			//res.json(user);
+			//Creating a session for the user
+			req.session.authenticated = true;
+			req.session.User = user;
+			//Redirecting to home page
 			res.redirect('/user/show/'+user.id);
 			req.session.flash = {};
 		});

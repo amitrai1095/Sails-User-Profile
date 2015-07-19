@@ -30,10 +30,27 @@
 
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/materialize.css">
     <!--STYLES END-->
   </head>
 
-  <body>
+  <body style="background-color:#1a69c1;">
+
+    <nav style="background-color:#fdfdfd;color:#514b4b !important;">
+      <div class="nav-wrapper">
+        <a style="color:#514b4b;margin-left:30px;font-style:italic" href="#" class="brand-logo">Sails Profile</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if(session.authenticated){ %>
+          <li><a style="color:#514b4b !important;" href="/session/show/<%= session.User.id %>"><%= session.User.name%></a></li>
+          <li><a style="color:#514b4b !important;" href="/session/destroy">Sign Out</a></li>
+          <% } %>
+          <% if(!session.authenticated){ %>
+            <a href="/session/new" class="btn" style="background-color:#fdfdfd;margin-right:30px;color:#514b4b !important;">Sign In</a>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+
     <%- body %>
 
 
@@ -89,6 +106,9 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/init.js"></script>
+    <script src="/js/dependencies/jquery-2.1.3.min.js"></script>
+    <script src="/js/dependencies/materialize.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

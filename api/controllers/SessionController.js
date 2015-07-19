@@ -50,6 +50,16 @@ module.exports = {
 			});
 		});
 
+	},
+
+	destroy: function(req,res,next){
+		//Session Destroyed
+		req.session.destroy();
+		//Logging to console
+		console.log('User Logged Out')
+
+		//Redirecting to signIn page
+		res.redirect('/session/new');
 	}
 
 };
