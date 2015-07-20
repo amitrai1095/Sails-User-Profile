@@ -28,9 +28,16 @@ module.exports = {
 			//Creating a session for the user
 			req.session.authenticated = true;
 			req.session.User = user;
-			//Redirecting to home page
-			res.redirect('/user/show/'+user.id);
-			req.session.flash = {};
+
+			//Changing the user online attribute to true
+
+			user.online = true;
+
+			user.save(function(err,user){
+				if(err) return next(err);
+				//Redirecting to home page
+				res.redirect('/user/show/'+user.id);	
+			});
 		});
 	},
 

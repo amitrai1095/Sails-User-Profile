@@ -47,31 +47,43 @@ module.exports = {
 				req.session.authenticated = true;
 				req.session.User = user;
 
-				//Checking if user is admin
+				user.online = true;
+				user.save(function(err,data){
+					if(err) return next(err);
 
-				if(req.session.User.admin){
-					//Redirecting to Admin Page
-					res.redirect('/user');
-					return;
-				}
+					//Checking if user is admin
+					if(req.session.User.admin){
+						//Redirecting to Admin Page
+						res.redirect('/user');
+						return;
+					}
 
-				//Redirecting to normal user page
-
-				res.redirect('/user/show/'+user.id );
+					//Redirecting to normal user page
+					res.redirect('/user/show/'+user.id );
+				});
 			});
 		});
 
 	},
 
 	destroy: function(req,res,next){
-		//Session Destroyed
-		req.session.destroy();
-		//Logging to console
-		console.log('User Logged Out')
+		
+		User.findOne(req.session.User.id, function foundUser(err,user){
+			var userID = req.session.User.id;
 
-		//Redirecting to signIn page
-		res.redirect('/session/new');
+			User.update(userID, {
+				online: false
+			}, function(err){
+				if(err) return next(err);
+				//Session Destroyed
+				req.session.destroy();
+				//Logging to console
+				console.log('User Logged Out')
+
+				//Redirecting to signIn page
+				res.redirect('/session/new');
+			});
+		});
 	}
-
 };
 

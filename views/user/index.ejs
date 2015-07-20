@@ -12,6 +12,12 @@
 				<td>User</td>
 			<% } %>
 
+			<% if(user.online){ %>
+				<td>Online</td>
+			<% } else { %>
+				<td>Offline</td>
+			<% } %>
+
 			<td><a href="/user/show/<%= user.id %>" class="btn" style="background-color:white;color:#514b4b">Show</a></td>
 			<td><a href="/user/edit/<%= user.id %>" class="btn" style="background-color:white;color:#514b4b">Edit</a></td>
 			<td><a href="/user/delete/<%= user.id %>" class="btn" style="background-color:white;color:#514b4b">Delete</a></td>
